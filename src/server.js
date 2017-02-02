@@ -56,47 +56,6 @@ _.each(Routes.getRoutes(), (route) => {
     server.route(route);
 });
 
-server.ext('onPreResponse', (request, reply) => {
-
-    const statusCode = request.response.statusCode || request.response.output.statusCode;
-
-    if (statusCode < 400) {
-        return reply.continue();
-    }
-
-    const message = request.response.message;
-    const error = request.response.output.payload.error;
-
-    return LogService.errorFromResponse(request, request.response)
-        .then((log) => {
-
-            const errorModel = {
-                traceId: log._id,
-                message: message,
-                error: error,
-                statusCode: log.statusCode
-            };
-
-            if (!Config.isEnvironment('production') && statusCode === 500) {
-                errorModel.details = log.details;
-            }
-
-            if (statusCode === 400) {
-                errorModel.validation = request.payload.validation
-                    ? request.payload.validation
-                    : {};
-            }
-
-            return reply(errorModel).code(errorModel.statusCode);
-        })
-        .catch((err) => {
-
-            console.log(err);
-            return reply.continue();
-        });
-});
-
-
 const start = () => {
 
     server.start(() => {
