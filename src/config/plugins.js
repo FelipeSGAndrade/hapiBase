@@ -6,7 +6,7 @@ const SwaggerUi = require('./plugins/swagger-ui');
 
 const UsedList = function () {
 
-    if (process.env.app_environment && (process.env.app_environment === 'development') {
+    if (process.env.NODE_ENV && process.env.NODE_ENV === 'development') {
         return [
             Good,
             require('inert'),
@@ -18,7 +18,7 @@ const UsedList = function () {
     }
 
     //Remove swagger from production
-    if (process.env.app_environment && process.env.app_environment === 'production') {
+    if (process.env.NODE_ENV && process.env.NODE_ENV === 'production') {
         return [
             Good,
             require('inert'),

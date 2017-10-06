@@ -1,6 +1,6 @@
 'use strict'
 
-const UserRoutes = require('./resources/user/routes');
+const UserRoutes = require('./resources/user/userRoute');
 
 const getRoutes = () => {
 

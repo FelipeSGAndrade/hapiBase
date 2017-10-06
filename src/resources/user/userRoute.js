@@ -1,24 +1,27 @@
 'use strict'
 
-const generateToken = {
-    path: '/v1/user',
+const userController = require('./userController');
+const loginViewModel = require('./loginViewModel');
+
+const login = {
+    path: '/v1/user/login',
     method: 'POST',
     config: {
         tags: ['api'],
         description: 'Generate user token through email and password',
         notes: 'Generate user token through email and password',
-        handler: (request, reply) => UserController.guest(request, reply),
+        handler: (request, reply) => userController.login(request, reply),
         validate: {
-            payload: GenerateTokenViewModel.request
+            payload: loginViewModel.request
         },
         response: {
-            schema: GenerateTokenViewModel.response
+            schema: loginViewModel.response
         }
     }
 };
 
 const routes = [
-    generateToken
+    login
 ];
 
 module.exports = routes;
