@@ -1,12 +1,12 @@
-'use strict';
+'use strict'
 
 module.exports = {
-    register: require('hapi-swaggered-ui'),
+    plugin: require('hapi-swaggered-ui'),
     options: {
-        title: 'Wishlist Documentation',
+        title: 'HapiBase Documentation',
         path: '/docs',
         swaggerOptions: {
             validatorUrl: null
         }
     }
-};
+}

@@ -1,80 +1,51 @@
-'use strict';
+'use strict'
 
-const _ = require('lodash');
-const Plugins = require('./config/plugins');
-const Config = require('./config/config');
-const Hapi = require('hapi');
-//const UserService = require('./resources/user/userService');
-//const SecurityManager = require('./managers/securityManager');
-const Routes = require('./routes');
+const _ = require('lodash')
+const Plugins = require('./config/plugins')
+const Config = require('./config/config')
+const Hapi = require('hapi')
+const Routes = require('./routes')
 
-const server = new Hapi.Server();
-
-server.connection({
+const server = Hapi.server({
     host: Config.server.host,
-    port: Config.server.port,
-    labels: ['api']
-});
+    port: Config.server.port
+})
 
-server.register(Plugins, (err) => {
-
-    if (err) {
-        console.log(err);
-    }
-});
-
-// server.auth.strategy('token', 'jwt', {
-//     key: Config.security.key,
-//     validateFunc: (request, decodedData, callback) => {
-
-//         try {
-//             const decryptedData = SecurityManager.decrypt(decodedData.user);
-
-//             UserService.get(decryptedData.userId)
-//                 .then((user) => {
-
-//                     callback(null, true, user);
-//                 })
-//                 .catch((error) => {
-
-//                     callback(error, false, null);
-//                 });
-//         }
-//         catch (error) {
-//             callback(error, false, null);
-//         }
-//     },
-//     verifyOptions: {
-//         maxAge: Config.security.maxAge,
-//         algorithms: [
-//             Config.security.algorithm
-//         ]
-//     }
-// });
-
-_.each(Routes.getRoutes(), (route) => {
-
-    server.route(route);
-});
-
-const start = () => {
+const registerPlugins = async () => {
+    await server.register(Plugins)
+        .catch((err) => {
     
-    server.start(() => {
-        
-        server.log('info', 'server running at: ' + server.info.uri + ' using environment: ' + Config.getEnvironment());
-    });
+            if (err) {
+                console.log(err)
+            }
+        })
+}
 
-};
+const start = async () => {
+    
+    // await server.register(require('./config/plugins/good'))
+    //     .catch((err) => {
+    //         console.log(err)
+    //     })
+
+    await registerPlugins()
+
+    Routes.getRoutes().map((route) => server.route(route))
+    
+    await server.start()
+        
+    server.log('info', 'server running at: ' + server.info.uri + ' using environment: ' + Config.getEnvironment())
+}
 
 const stop = (reason) => {
 
-    server.log('info', 'server stopping: ' + reason);
-    server.stop();
-};
+    server.log('info', 'server stopping: ' + reason)
+    server.stop()
+}
 
 
 module.exports = {
     start: start,
     stop: stop,
     server: server
-};
+}

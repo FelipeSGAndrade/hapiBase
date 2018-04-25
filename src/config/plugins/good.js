@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 
-const Good = require('good');
+const Good = require('good')
 
 const options = {
     ops: {
@@ -13,9 +13,9 @@ const options = {
             args: [{ log: '*', response: '*' }]
         }, { module: 'good-console' }, 'stdout']
     }
-};
+}
 
 module.exports = {
-    register: Good,
+    plugin: Good,
     options: options
-};
+}

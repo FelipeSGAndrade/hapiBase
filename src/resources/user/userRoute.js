@@ -6,11 +6,11 @@ const loginViewModel = require('./loginViewModel');
 const login = {
     path: '/v1/user/login',
     method: 'POST',
-    config: {
-        tags: ['api'],
+    options: {
+        tags: ['api', 'user'],
         description: 'Generate user token through email and password',
         notes: 'Generate user token through email and password',
-        handler: (request, reply) => userController.login(request, reply),
+        handler: userController.login,
         validate: {
             payload: loginViewModel.request
         },

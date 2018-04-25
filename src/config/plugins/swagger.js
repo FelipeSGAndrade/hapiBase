@@ -1,14 +1,18 @@
-'use strict';
+'use strict'
 
 module.exports = {
-    register: require('hapi-swaggered'),
+    plugin: require('hapi-swaggered'),
     options: {
-        tags: {
-            'api': 'API Endpoints'
+        tagging: {
+            mode: "tags"
         },
+        tags: [{
+            name: 'user',
+            description: 'User endpoints'
+        }],
         info: {
-            title: 'Wishlist Documentation',
+            title: 'HapiBase Documentation',
             version: '1.0'
         }
     }
-};
+}

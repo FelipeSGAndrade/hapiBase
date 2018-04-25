@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
-const Good = require('./plugins/good');
-const Swagger = require('./plugins/swagger');
-const SwaggerUi = require('./plugins/swagger-ui');
+const Good = require('./plugins/good')
+const Swagger = require('./plugins/swagger')
+const SwaggerUi = require('./plugins/swagger-ui')
 
 const UsedList = function () {
 
@@ -11,10 +11,10 @@ const UsedList = function () {
             Good,
             require('inert'),
             require('vision'),
-            require('hapi-auth-jwt'),
+            require('hapi-auth-jwt2'),
             Swagger,
             SwaggerUi
-        ];
+        ]
     }
 
     //Remove swagger from production
@@ -23,15 +23,15 @@ const UsedList = function () {
             Good,
             require('inert'),
             require('vision'),
-            require('hapi-auth-jwt')
-        ];
+            require('hapi-auth-jwt2')
+        ]
     }
 
     //Do not use for testing
     return [
-        require('hapi-auth-jwt')
-    ];
+        require('hapi-auth-jwt2')
+    ]
 
-};
+}
 
-module.exports = UsedList();
+module.exports = UsedList()
