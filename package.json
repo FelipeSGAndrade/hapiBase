@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "export NODE_ENV=development && pm2-dev start app.js",
+    "start": "export NODE_ENV=development && pm2-dev start ecosystem.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Felipe Andrade",
@@ -23,6 +23,8 @@
     "joi": "^13.2.0",
     "jsonwebtoken": "^8.2.1",
     "lodash": "^4.17.10",
+    "node-json-db": "^0.7.5",
+    "uuid": "^3.2.1",
     "vision": "^5.3.2"
   },
   "devDependencies": {

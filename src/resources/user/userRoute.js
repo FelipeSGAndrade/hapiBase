@@ -15,7 +15,9 @@ const login = {
             payload: loginViewModel.request
         },
         response: {
-            schema: loginViewModel.response
+            status: {
+                200: loginViewModel.response,
+            }
         }
     }
 };
