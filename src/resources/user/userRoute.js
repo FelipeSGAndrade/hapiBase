@@ -1,7 +1,7 @@
 'use strict'
 
-const userController = require('./userController');
-const loginViewModel = require('./loginViewModel');
+const userController = require('./userController')
+const loginViewModel = require('./loginViewModel')
 
 const login = {
     path: '/v1/user/login',
@@ -20,10 +20,10 @@ const login = {
             }
         }
     }
-};
+}
 
 const routes = [
     login
-];
+]
 
-module.exports = routes;
+module.exports = routes

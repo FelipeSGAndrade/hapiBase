@@ -1,14 +1,14 @@
 'use strict'
 
-const UserRoutes = require('./resources/user/userRoute');
+const UserRoutes = require('./resources/user/userRoute')
 
 const getRoutes = () => {
 
-    const routes = UserRoutes;
+    const routes = UserRoutes
 
-    return routes;
+    return routes
 }
 
 module.exports = {
     getRoutes: getRoutes
-};
+}

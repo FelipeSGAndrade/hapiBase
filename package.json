@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "export NODE_ENV=development && pm2-dev start ecosystem.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "lab -v --pattern '\\.test' src",
+    "test-watch": "fsmonitor -s -p '+*.js' npm test",
+    "coverage": "lab --pattern '\\.test' -r console -o stdout -r html -o coverage.html src"
   },
   "author": "Felipe Andrade",
   "license": "ISC",
@@ -28,6 +30,9 @@
     "vision": "^5.3.2"
   },
   "devDependencies": {
-    "pm2": "^2.10.2"
+    "code": "^5.2.0",
+    "lab": "^15.4.1",
+    "pm2": "^2.10.2",
+    "sinon": "^4.5.0"
   }
 }
