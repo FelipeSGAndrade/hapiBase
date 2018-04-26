@@ -54,3 +54,6 @@ jspm_packages/
 
 # mac file system
 *.DS_Store
+
+# lab coverage file
+coverage.html
