@@ -14,7 +14,7 @@ const server = Hapi.server({
 const registerPlugins = async () => {
     await server.register(Plugins)
         .catch((err) => {
-    
+
             if (err) {
                 console.log(err)
             }
@@ -22,18 +22,12 @@ const registerPlugins = async () => {
 }
 
 const start = async () => {
-    
-    // await server.register(require('./config/plugins/good'))
-    //     .catch((err) => {
-    //         console.log(err)
-    //     })
-
     await registerPlugins()
 
     Routes.getRoutes().map((route) => server.route(route))
-    
+
     await server.start()
-        
+
     server.log('info', 'server running at: ' + server.info.uri + ' using environment: ' + Config.getEnvironment())
 }
 
